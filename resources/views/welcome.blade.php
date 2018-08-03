@@ -91,5 +91,39 @@
                 </div>
             </div>
         </div>
+        <!-- jQuery -->
+      <script src="//code.jquery.com/jquery.js"></script>
+      <script type="text/javascript">
+        function login() {
+          $.ajax({
+            url: "http://localhost:8001/api/auth/login",
+            type:'post',
+            data:{
+              email : 'thanakorn@edispro.com',
+              password : '561463061',
+              remember_me : 1,
+            },
+            success: function(data) {
+              console.log(data);
+              $('[name="token"]').val("Bearer "+data.access_token);
+            }
+          });
+        }
+        function getUser() {
+          console.log(55);
+          $.ajax({
+            url: "http://localhost:8001/api/auth/user",
+            type:'get',
+            headers: {
+              'Content-Type': 'application/xml',
+              'X-Requested-With' : 'XMLHttpRequest',
+              'Authorization' : $('[name="token"]').val(),
+            },
+            success: function(data) {
+              console.log(data);
+            }
+          });
+        }
+      </script>
     </body>
 </html>

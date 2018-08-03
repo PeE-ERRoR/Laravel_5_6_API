@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
+use App\Http\Resources\UserCollection;
+use App\Http\Resources\User as UserResource;
+use App\User;
+
 class HomeController extends Controller
 {
     /**
@@ -25,8 +29,10 @@ class HomeController extends Controller
     public function index()
     {
         // date th
-        // 
         // $dt = Carbon::now('Asia/Bangkok');
-        return view('home');
+        // return view('home');
+
+        // return new UserCollection(User::all());
+        return new UserResource(User::find(1));
     }
 }
